@@ -13,7 +13,7 @@ export default function Home() {
 //             const notification = new Notification("My PWA App", {
 //               body: "This is a notification from My PWA App"
 //             });
-          }
+//           }
         });
       }
     }
