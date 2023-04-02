@@ -2,20 +2,18 @@ import styles from '../styles/Home.module.css'
 import React from 'react'
 export default function Home() {
   React.useEffect(() => {
-    if ("Notification" in window) {
-      if (Notification.permission === "granted") {
-        const notification = new Notification("My PWA App", {
-          body: "This is a notification from My PWA App"
-        });
-      } else if (Notification.permission !== "denied") {
-        Notification.requestPermission().then(permission => {
-//           if (permission === "granted") {
-//             const notification = new Notification("My PWA App", {
-//               body: "This is a notification from My PWA App"
-//             });
-//           }
-        });
-      }
+    if (typeof window !== "undefined" && "Notification" in window) {
+      Notification.requestPermission().then(function (permission) {
+        if (permission === "granted") {
+          navigator.serviceWorker.ready.then(function (registration) {
+            registration.showNotification("Hello world!");
+          });
+        } else if (permission === "default") {
+          console.log("Permission request for notifications was dismissed.");
+        } else {
+          console.log("Permission for notifications was denied.");
+        }
+      });
     }
   }, []);
   return (
