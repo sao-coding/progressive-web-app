@@ -1,6 +1,23 @@
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  useEffect(() => {
+    if ("Notification" in window) {
+      if (Notification.permission === "granted") {
+        const notification = new Notification("My PWA App", {
+          body: "This is a notification from My PWA App"
+        });
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(permission => {
+          if (permission === "granted") {
+            const notification = new Notification("My PWA App", {
+              body: "This is a notification from My PWA App"
+            });
+          }
+        });
+      }
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <main className={styles.main}>
