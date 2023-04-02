@@ -9,10 +9,10 @@ export default function Home() {
         });
       } else if (Notification.permission !== "denied") {
         Notification.requestPermission().then(permission => {
-          if (permission === "granted") {
-            const notification = new Notification("My PWA App", {
-              body: "This is a notification from My PWA App"
-            });
+//           if (permission === "granted") {
+//             const notification = new Notification("My PWA App", {
+//               body: "This is a notification from My PWA App"
+//             });
           }
         });
       }
