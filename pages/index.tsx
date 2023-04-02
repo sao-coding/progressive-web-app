@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css'
-
+import React from 'react'
 export default function Home() {
-  useEffect(() => {
+  React.useEffect(() => {
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
         const notification = new Notification("My PWA App", {
